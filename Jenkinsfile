@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage('BUILD') {
             steps {
-                sh 'mvn clean install package -Dmaven.test.skip=true'
+                sh 'mvn clean install package'
             }
         }
         stage('TEST') {
             steps {
-                sh 'mvn clean test -fn'
+                sh 'mvn clean test'
             }
         }
     }

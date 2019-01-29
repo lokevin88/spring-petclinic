@@ -1,15 +1,13 @@
 pipeline {
     agent any
-    stages {
-        stage('Test') {
-            steps {
-                sh './gradlew check'
-            }
-        }
+    triggers {
+      pollSCM('* * * * *')
     }
-    post {
-        always {
-            junit 'build/reports/**/*.xml'
+    stages {
+        stage('BUILD') {
+            steps {
+                sh 'mvn install package -Dmaven.test.skip=true'
+            }
         }
     }
 }
